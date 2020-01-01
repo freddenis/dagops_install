@@ -17,7 +17,7 @@ gcloud beta compute --project=$PROJECT instances create $VM --zone=$ZONE --machi
 #
 # Connect and execute the installation script
 #
-printf "\n\t\033[1;36m%s\033[m\n\n" "3/5 -- Sleeping 10 seconsd to let everything starting. . ."
+printf "\n\t\033[1;36m%s\033[m\n\n" "3/5 -- Sleeping 10 seconds to let everything starting. . ."
 sleep 10                                                                        # Sleep a bit to let the VM to warm up
 
 printf "\n\t\033[1;36m%s\033[m\n\n" "4/5 -- Copy file to VM"
