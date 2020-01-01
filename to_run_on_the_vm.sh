@@ -5,7 +5,7 @@ sudo su - << AS_ROOT
 sed -i 's/SELINUX=enforcing/SELINUX=disabled/' /etc/sysconfig/selinux
 setenforce 0
 yum -y update
-yum install -y httpd mariadb-server python-pip git yum-utils wget
+yum install -y httpd mariadb-server python-pip git yum-utils wget gcc
 pip install j2cli
 yum install -y http://rpms.remirepo.net/enterprise/remi-release-7.rpm
 yum-config-manager --enable remi-php73
