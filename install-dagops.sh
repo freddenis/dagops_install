@@ -26,7 +26,7 @@ cat << END
         Please run:
         $ gcloud beta compute --project $PROJECT ssh --zone $ZONE $VM
         $ /tmp/to_run_on_the_vm.sh
-        $ #rm /tmp/to_run_on_the_vm.sh
+        $ rm /tmp/to_run_on_the_vm.sh
 END
 #
 # How to connect to the VM
