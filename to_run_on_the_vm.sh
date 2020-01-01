@@ -10,6 +10,12 @@ pip install j2cli
 yum install -y http://rpms.remirepo.net/enterprise/remi-release-7.rpm
 yum-config-manager --enable remi-php73
 yum install -y php php-common php-opcache php-mcrypt php-cli php-gd php-curl php-mysqlnd
+cd /tmp
+wget http://www.datsi.fi.upm.es/~frosal/sources/shc-3.8.7.tgz
+tar xvfz shc-3.8.7.tgz
+cd shc-3.8.7
+make
+cd -
 #
 # dagops user
 #
@@ -68,7 +74,17 @@ git clone https://github.com/freddenis/dagops.git
 mv dagops/html/* /var/www/html/dagops/.
 ln -s dagops/ bin
 ln -s /var/www/html/dagops/ html
-chmod u+x /home/dagops/bin/*.sh
+# Encrypt the shells
+cd /home/dagops/bin
+for F in $(ls *.sh)
+do
+   /tmp/shc-3.8.7/shc -f $F
+   rm ${F}.x.c
+   rm ${F}
+   mv ${F}.x ${F}
+   chmod u+x ${F}
+done
+cd -
 #
 # dagops needs to connect with no password
 #
