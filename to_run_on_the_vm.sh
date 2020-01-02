@@ -2,8 +2,9 @@
 #
 # Software installation
 sudo su - << AS_ROOT
-sed -i 's/SELINUX=enforcing/SELINUX=disabled/' /etc/sysconfig/selinux
-setenforce 0
+#sed -i 's/SELINUX=enforcing/SELINUX=disabled/' /etc/sysconfig/selinux
+#setenforce 0
+yum remove -y selinux*
 yum -y update
 yum install -y httpd mariadb-server python-pip git yum-utils wget gcc
 pip install j2cli
