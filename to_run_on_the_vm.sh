@@ -66,25 +66,29 @@ grant all privileges on dagops.* to 'dagops'@'localhost' identified by 'dagops12
 END
 AS_ROOT
 #
-# Dagops env
+# Get the dagops code
 #
 sudo su - dagops << AS_DAGOPS
-cd
 git clone https://github.com/freddenis/dagops.git
 mv dagops/html/* /var/www/html/dagops/.
 ln -s dagops/ bin
 ln -s /var/www/html/dagops/ html
+AS_DAGOPS
+#
 # Encrypt the shells
-cd /home/dagops/bin
-for F in $(ls *.sh)
+#
+sudo su - dagops bash -c '
+for F in `ls /home/dagops/bin/*.sh`
 do
-   /tmp/shc-3.8.7/shc -f $F
+   /tmp/shc-3.8.7/shc -f ${F}
    rm ${F}.x.c
    rm ${F}
    mv ${F}.x ${F}
    chmod u+x ${F}
 done
-cd -
+'
+#
+sudo su - dagops << AS_DAGOPS
 #
 # dagops needs to connect with no password
 #
