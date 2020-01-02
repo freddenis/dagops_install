@@ -30,6 +30,7 @@ groupadd www-pub
 usermod -a -G www-pub dagops
 chown -R root:www-pub /var/www
 chmod -R 2775 /var/www
+sed -i '/Listen 8123/d' /etc/httpd/conf/httpd.conf
 echo "Listen 8123" >> /etc/httpd/conf/httpd.conf
 cat << END > /etc/httpd/conf.d/dagops.conf
 <VirtualHost *:8123>
