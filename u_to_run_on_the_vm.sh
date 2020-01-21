@@ -44,10 +44,10 @@ ln -s /etc/apache2/sites-available/001-dagops.conf /etc/apache2/sites-enabled/00
 #
 # Start apache and MariaDB
 #
-systemctl start apache2
 systemctl enable apache2
-systemctl start mariadb
+systemctl restart apache2
 systemctl enable mariadb
+systemctl restart mariadb
 #
 # Secure MariaDB
 #
