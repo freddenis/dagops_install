@@ -5,6 +5,7 @@ export    ZONE="australia-southeast1-b"
 export      VM="udagops"
 export    TYPE="f1-micro"
 export PROJECT="myfirstcontainer-263100"
+export  TO_RUN="u_to_run_on_the_vm.sh"
 #
 # Create a VM
 #
@@ -21,9 +22,9 @@ printf "\n\t\033[1;36m%s\033[m\n\n" "3/5 -- Sleeping 10 seconds to let everythin
 sleep 10                                                                        # Sleep a bit to let the VM to warm up
 
 printf "\n\t\033[1;36m%s\033[m\n\n" "4/5 -- Copy file to VM"
-chmod u+x to_run_on_the_vm.sh
-echo gcloud compute scp to_run_on_the_vm.sh $VM:/tmp/. --zone=$ZONE
-gcloud compute scp to_run_on_the_vm.sh $VM:/tmp/. --zone=$ZONE
+chmod u+x $TO_RUN
+echo gcloud compute scp to_run_on_the_vm.shi $VM:/tmp/. --zone=$ZONE
+gcloud compute scp $TO_RUN $VM:/tmp/. --zone=$ZONE
 
 # Once we have got clone automatized:
 #gcloud beta compute --project $PROJECT ssh --zone $ZONE $VM << END
@@ -34,8 +35,8 @@ gcloud compute scp to_run_on_the_vm.sh $VM:/tmp/. --zone=$ZONE
 printf "\n\t\033[1;36m%s\033[m\n\n" "5/5 -- Please execute the below steps to finish the dagops installation"
 cat << END
         $ gcloud beta compute --project $PROJECT ssh --zone $ZONE $VM
-        $ /tmp/to_run_on_the_vm.sh
-        $ rm /tmp/to_run_on_the_vm.sh
+        $ /tmp/$TO_RUN
+        $ rm /tmp/$TO_RUN
 
 END
 #
