@@ -6,7 +6,7 @@ sudo su - << AS_ROOT
 #setenforce 0
 #yum remove -y selinux*
 apt-get -y update && sudo apt-get -y upgrade && sudo apt -y autoremove
-sudo apt-get -y install apache2 mariadb-server python-pip git wget gcc php
+sudo apt-get -y install apache2 mariadb-server python-pip git wget gcc php php-mysqlnd
 pip install j2cli
 add-apt-repository -y ppa:neurobin/ppa
 apt-get update
